@@ -1,0 +1,5 @@
+{
+  "question": "What is Angular?",
+  "options": ["Framework", "Library", "Database", "Language"],
+  "answer": "Framework"
+}
