@@ -1,0 +1,94 @@
+<div class="prequiz-wrapper">
+  <!-- ===== HEADER ===== -->
+  <app-header [username]="username"> </app-header>
+
+  <!-- ===== MAIN CONTENT ===== -->
+  <div class="content-area">
+    <div class="main-card">
+      <!-- TITLE -->
+      <!-- <div class="assessment-header">
+        <h2>{{ quizTitle }}</h2>
+
+        <div class="candidate-row">
+       div class="candidate-avatar">
+            {{ username.charAt(0) | uppercase }}
+          </div> -->
+
+      <!-- <div class="candidate-info">
+            <span class="label">Employee</span>
+        <span class="name">{{ username }}</span> -->
+      <!-- </div> -->
+      <!-- </div> -->
+      <!-- </div>  -->
+
+      <!-- SUMMARY -->
+      <div class="summary-row">
+        <div class="summary-box">
+          <span class="summary-value">{{ totalQuestions }}</span>
+          <span class="summary-label">Total Questions</span>
+        </div>
+
+        <div class="summary-box">
+          <span class="summary-value">{{ totalTime }}</span>
+          <span class="summary-label">Total Time (Minutes)</span>
+        </div>
+
+        <div class="summary-box">
+          <span class="summary-value">Auto</span>
+          <span class="summary-label">Submission</span>
+        </div>
+      </div>
+
+      <!-- INSTRUCTIONS -->
+      <div class="section">
+        <h3>Instructions</h3>
+
+        <ul>
+          <li>Each question carries equal marks.</li>
+
+          <li class="icon-instruction">
+            You may navigate using
+
+            <div class="nav-buttons">
+              <button class="nav-btn prev-btn">
+                <mat-icon>arrow_back</mat-icon>
+                Previous
+              </button>
+
+              <button class="nav-btn next-btn">
+                Next
+                <mat-icon>arrow_forward</mat-icon>
+              </button>
+            </div>
+          </li>
+
+          <li>Unanswered questions will be marked as Not Attempted.</li>
+          <li>The system will auto-submit once time expires.</li>
+          <li>Do not refresh or close the browser during the test.</li>
+        </ul>
+      </div>
+
+      <!-- LEGEND -->
+      <div class="section">
+        <h3>Question Status Legend</h3>
+
+        <div class="legend-row">
+          <span class="badge answered">Answered</span>
+          <span class="badge not-answered">Not Answered</span>
+          <span class="badge skipped">Skipped</span>
+        </div>
+      </div>
+
+      <!-- ACTION -->
+      <div class="action-section">
+        <mat-checkbox [(ngModel)]="isConfirmed" style="color: aliceblue">
+          I confirm that I have read and understood the instructions.
+        </mat-checkbox>
+
+        <button mat-raised-button color="primary" [disabled]="!isConfirmed" (click)="startQuiz()">
+          Start Assessment
+        </button>
+      </div>
+    </div>
+  </div>
+</div>

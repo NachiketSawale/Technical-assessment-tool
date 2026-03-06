@@ -1,0 +1,59 @@
+<div class="navigator-card">
+
+  <h3>Question Navigator</h3>
+
+  <!-- Question Grid -->
+  <div class="navigator-grid">
+    <button
+      *ngFor="let question of questionArray"
+      class="nav-number"
+      [ngClass]="getButtonClass(question)"
+      (click)="onQuestionClick(question)"
+    >
+      {{ question }}
+    </button>
+  </div>
+
+  <!-- Previous / Next -->
+  <div class="nav-buttons">
+
+    <button
+      (click)="previous.emit()"
+      [disabled]="currentQuestion === 1">
+      ← Previous
+    </button>
+
+    <button
+      (click)="next.emit()"
+      [disabled]="currentQuestion === totalQuestions">
+      Next →
+    </button>
+
+  </div>
+
+  <!-- Legend -->
+  <div class="legend">
+
+    <div class="legend-item">
+      <div class="box active"></div>
+      <span>Current</span>
+    </div>
+
+    <div class="legend-item">
+      <div class="box answered"></div>
+      <span>Answered</span>
+    </div>
+
+    <div class="legend-item">
+      <div class="box skipped"></div>
+      <span>Skipped</span>
+    </div>
+
+    <div class="legend-item">
+      <div class="box unanswered"></div>
+      <span>Not Visited</span>
+    </div>
+
+  </div>
+
+</div>

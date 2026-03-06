@@ -1,0 +1,143 @@
+<div class="login-wrapper" >
+
+  <!-- ================= HEADER ================= -->
+  <app-header></app-header>
+
+  <!-- ================= MAIN ================= -->
+  <div class="main-container">
+
+    <!-- ========= LEFT SECTION ========= -->
+    <div class="left-section">
+
+      <h2 class="title">Welcome to TechQuiz Pro</h2>
+
+      <!-- <div class="subtitle">
+        Advanced IT Skills Assessment Platform
+      </div>
+
+      <div class="description">
+        Test your knowledge, track your progress, and enhance your IT skills
+        with our comprehensive quiz platform.
+      </div> -->
+
+      <!-- Images -->
+      <div class="image-grid">
+        <img src="https://images.unsplash.com/photo-1624298696100-a6aae4884881?w=800">
+        <img src="https://images.unsplash.com/photo-1729100193507-10a252bdc767?w=800">
+      </div>
+
+      <!-- Features -->
+      <h3 class="feature-title">Key Features</h3>
+
+      <div class="feature">
+      <span class="material-icons">check_circle</span>
+        <div>
+  
+          <p>Wide range of IT topics and difficulty levels</p>
+        </div>
+      </div>
+
+      <div class="feature">
+     <span class="material-icons">check_circle</span>
+        <div>
+        
+          <p>Instant feedback and detailed performance analytics</p>
+        </div>
+      </div>
+
+      <div class="feature">
+       <span class="material-icons">check_circle</span>
+        <div>
+         
+          <p>Monitor your improvement over time</p>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- ========= RIGHT LOGIN ========= -->
+    <div class="right-section">
+
+      <div class="login-card">
+
+        <h2 class="signin-title">Sign In</h2>
+        <p class="signin-sub">
+          Access your account to start taking assessments
+        </p>
+
+        <!-- Tabs -->
+        <div class="tab-switch">
+          <button
+            [class.active]="activeTab==='employee'"
+            (click)="switchTab('employee')">
+            Employee
+          </button>
+
+          <button
+            [class.active]="activeTab==='admin'"
+            (click)="switchTab('admin')">
+            Admin
+          </button>
+        </div>
+
+        <!-- EMPLOYEE LOGIN -->
+        @if (activeTab === 'employee') {
+          <form [formGroup]="employeeForm" (ngSubmit)="employeeLogin()">
+
+            <label>Email Address</label>
+            <input
+              type="email"
+              placeholder="employee@company.com"
+              formControlName="email" />
+
+            <button type="submit" class="btn btn-primary w-100" [disabled]="isLoading">
+              @if (isLoading) {
+                <span class="spinner-border spinner-border-sm me-2" role="status"></span>
+              }
+              {{ isLoading ? 'Loading...' : 'Sign In' }}
+            </button>
+
+            <p class="helper-text">
+              Employees only need their email address to access assessments
+            </p>
+
+          </form>
+        }
+
+        <!-- ADMIN LOGIN -->
+        @if (activeTab === 'admin') {
+          <form [formGroup]="adminForm" (ngSubmit)="adminLogin()">
+
+            <label>Email Address</label>
+            <input type="email"
+                   placeholder="admin@company.com"
+                   formControlName="email"
+                   [class.is-invalid]="adminForm.get('email')?.touched && adminForm.get('email')?.invalid" />
+            @if (adminForm.get('email')?.touched && adminForm.get('email')?.errors?.['required']) {
+              <div class="invalid-feedback">Email is required.</div>
+            }
+            @if (adminForm.get('email')?.touched && adminForm.get('email')?.errors?.['email']) {
+              <div class="invalid-feedback">Please enter a valid email address.</div>
+            }
+
+            <label>Password</label>
+            <input type="password"
+                   placeholder="Enter password"
+                   formControlName="password"
+                   [class.is-invalid]="adminForm.get('password')?.touched && adminForm.get('password')?.invalid" />
+            @if (adminForm.get('password')?.touched && adminForm.get('password')?.errors?.['required']) {
+              <div class="invalid-feedback">Password is required.</div>
+            }
+
+            <button type="submit" class="primary-btn purple">
+              Sign In as Admin
+            </button>
+
+          </form>
+        }
+
+      </div>
+    </div>
+
+  </div>
+</div>

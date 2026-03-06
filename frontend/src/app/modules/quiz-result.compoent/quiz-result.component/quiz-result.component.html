@@ -1,0 +1,105 @@
+<div class="results-container">
+  <!-- Header -->
+  <div class="results-header">
+    <div class="icon-circle">✔</div>
+    <h1>Quiz Completed!</h1>
+    <p>Thank you for completing the technical assessment</p>
+  </div>
+
+  <!-- Summary Card -->
+  <div class="summary-card">
+    <h2>Assessment Summary</h2>
+
+    <!-- Progress -->
+    <div class="progress-section">
+      <div class="progress-label">
+        <span>Completion Rate</span>
+        <span>{{ completionRate | number: '1.0-0' }}%</span>
+      </div>
+
+      <div class="progress-bar">
+        <div class="progress-fill" [style.width.%]="completionRate"></div>
+      </div>
+    </div>
+
+    <!-- Stats Grid -->
+    <div class="stats-grid">
+      <div class="stat-card total">
+        <div class="stat-number">{{ totalQuestions }}</div>
+        <div class="stat-label">Total Questions</div>
+      </div>
+
+      <div class="stat-card submitted">
+        <div class="stat-number">{{ submittedCount }}</div>
+        <div class="stat-label">Submitted</div>
+      </div>
+
+      <div class="stat-card correct">
+        <div class="stat-number">{{ correctCount }}</div>
+        <div class="stat-label">Correct Answers</div>
+      </div>
+
+      <div class="stat-card skipped">
+        <div class="stat-number">{{ skippedCount }}</div>
+        <div class="stat-label">Skipped</div>
+      </div>
+    </div>
+
+    <!-- Time -->
+    <div class="time-section">
+      ⏱ Time Taken:
+      <span class="time-value">
+        {{ formatTime(timeTaken) }}
+      </span>
+    </div>
+  </div>
+
+  <!-- Button -->
+  <div class="button-section">
+    <button class="primary-btn" (click)="onRestartClick()">Back to Login</button>
+
+    <!-- PDF REPORT SECTION -->
+    <div id="reportSection" class="report-container">
+      <h2>Technical Assessment Report</h2>
+
+      <p><strong>Candidate Name:</strong> {{ candidateName }}</p>
+      <p><strong>Total Score:</strong> {{ totalScore }}%</p>
+
+      <!-- Score Circle -->
+      <div class="score-circle">{{ totalScore }}%</div>
+
+      <!-- Subject Performance Chart -->
+      <h3>Subject Performance</h3>
+      <canvas id="subjectChart"></canvas>
+
+      <!-- Performance Table -->
+      <h3>Performance Level</h3>
+      <table>
+        <tr>
+          <th>Subject</th>
+          <th>Score</th>
+          <th>Level</th>
+        </tr>
+
+        <tr *ngFor="let s of subjects">
+          <td>{{ s.name }}</td>
+          <td>{{ s.score }}%</td>
+          <td>{{ getPerformance(s.score) }}</td>
+        </tr>
+      </table>
+
+      <!-- Recommended Courses -->
+      <h3>Recommended Courses</h3>
+      <ul>
+        <li *ngFor="let course of recommendedCourses">
+          {{ course }}
+        </li>
+      </ul>
+    </div>
+
+    <!-- Download PDF Button -->
+    <button class="download-btn" (click)="downloadPDF()">Download Report</button>
+
+    <p class="note">Your results have been recorded and will be reviewed by the assessment team.</p>
+  </div>
+</div>

@@ -1,0 +1,338 @@
+/* ===== PAGE WRAPPER ===== */
+:host {
+  display: block;
+  min-height: 100vh;
+  background: #020617;
+  font-family: 'Segoe UI', Arial, sans-serif;
+}
+
+.results-container {
+  max-width: 720px;
+  margin: auto;
+  padding: 48px 20px;
+  color: #e2e8f0;
+}
+
+/* ===== HEADER ===== */
+.results-header {
+  text-align: center;
+  margin-bottom: 36px;
+
+  h1 {
+    font-size: 32px;
+    font-weight: 800;
+    margin-bottom: 8px;
+    background: linear-gradient(135deg, #60a5fa, #a78bfa);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+
+  p {
+    color: #64748b;
+    font-size: 15px;
+  }
+}
+
+.icon-circle {
+  width: 80px;
+  height: 80px;
+  background: rgba(34, 197, 94, 0.12);
+  border: 2px solid rgba(34, 197, 94, 0.35);
+  color: #4ade80;
+  font-size: 34px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 18px;
+  box-shadow: 0 0 24px rgba(34, 197, 94, 0.2);
+}
+
+/* ===== SUMMARY CARD ===== */
+.summary-card {
+  background: rgba(10, 18, 40, 0.8);
+  backdrop-filter: blur(12px);
+  padding: 32px;
+  border-radius: 20px;
+  border: 1px solid rgba(59, 130, 246, 0.12);
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+  margin-bottom: 24px;
+
+  h2 {
+    font-size: 18px;
+    font-weight: 700;
+    color: #f1f5f9;
+    margin-bottom: 22px;
+    padding-bottom: 14px;
+    border-bottom: 1px solid rgba(30, 41, 59, 0.8);
+  }
+}
+
+/* ===== PROGRESS ===== */
+.progress-section {
+  margin-bottom: 28px;
+}
+
+.progress-label {
+  display: flex;
+  justify-content: space-between;
+  font-size: 13px;
+  color: #64748b;
+  font-weight: 500;
+  margin-bottom: 8px;
+}
+
+.progress-bar {
+  height: 8px;
+  background: rgba(30, 41, 59, 0.8);
+  border-radius: 999px;
+  overflow: hidden;
+}
+
+.progress-fill {
+  height: 100%;
+  background: linear-gradient(90deg, #3b82f6, #22c55e);
+  border-radius: 999px;
+  transition: width 0.6s ease;
+  box-shadow: 0 0 10px rgba(59, 130, 246, 0.3);
+}
+
+/* ===== STATS GRID ===== */
+.stats-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 14px;
+  margin-top: 24px;
+}
+
+.stat-card {
+  text-align: center;
+  padding: 22px 16px;
+  border-radius: 14px;
+  border: 1px solid;
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+  position: relative;
+  overflow: hidden;
+
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 2px;
+    opacity: 0.6;
+  }
+
+  &:hover {
+    transform: translateY(-3px);
+  }
+
+  .stat-number {
+    font-size: 28px;
+    font-weight: 700;
+    margin-bottom: 6px;
+    line-height: 1;
+  }
+
+  .stat-label {
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    font-weight: 500;
+    opacity: 0.8;
+  }
+}
+
+.total {
+  background: rgba(59, 130, 246, 0.1);
+  border-color: rgba(59, 130, 246, 0.25);
+  color: #60a5fa;
+  box-shadow: 0 4px 16px rgba(59, 130, 246, 0.08);
+
+  &::before { background: #3b82f6; }
+}
+
+.submitted {
+  background: rgba(34, 197, 94, 0.1);
+  border-color: rgba(34, 197, 94, 0.25);
+  color: #4ade80;
+  box-shadow: 0 4px 16px rgba(34, 197, 94, 0.08);
+
+  &::before { background: #22c55e; }
+}
+
+.correct {
+  background: rgba(139, 92, 246, 0.1);
+  border-color: rgba(139, 92, 246, 0.25);
+  color: #a78bfa;
+  box-shadow: 0 4px 16px rgba(139, 92, 246, 0.08);
+
+  &::before { background: #8b5cf6; }
+}
+
+.skipped {
+  background: rgba(245, 158, 11, 0.1);
+  border-color: rgba(245, 158, 11, 0.25);
+  color: #fbbf24;
+  box-shadow: 0 4px 16px rgba(245, 158, 11, 0.08);
+
+  &::before { background: #f59e0b; }
+}
+
+/* ===== TIME ===== */
+.time-section {
+  text-align: center;
+  margin-top: 22px;
+  font-size: 14px;
+  color: #64748b;
+  padding-top: 16px;
+  border-top: 1px solid rgba(30, 41, 59, 0.6);
+
+  .time-value {
+    font-weight: 700;
+    color: #93c5fd;
+    font-size: 15px;
+  }
+}
+
+/* ===== BUTTON ===== */
+.button-section {
+  text-align: center;
+}
+
+.primary-btn {
+  background: linear-gradient(135deg, #3b82f6, #6366f1);
+  color: white;
+  border: none;
+  padding: 13px 36px;
+  border-radius: 10px;
+  cursor: pointer;
+  font-size: 15px;
+  font-weight: 600;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 16px rgba(59, 130, 246, 0.35);
+  letter-spacing: 0.3px;
+
+  &:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 8px 24px rgba(59, 130, 246, 0.5);
+  }
+
+  &:active { transform: scale(0.97); }
+}
+
+.note {
+  margin-top: 14px;
+  font-size: 12px;
+  color: #475569;
+  line-height: 1.5;
+}
+
+/* Page background */
+// .results-container{
+//   background:#f1f5f9;
+//   padding:30px;
+//   min-height:100vh;
+// }
+
+/* Report Card */
+.report-container{
+  background:#ffffff;
+  padding:30px 40px;
+  border-radius:12px;
+  max-width:850px;
+  margin:auto;
+  box-shadow:0 6px 20px rgba(0,0,0,0.08);
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+/* Report Title */
+.report-container h2{
+  text-align:center;
+  margin-bottom:25px;
+  color:#1e293b;
+}
+
+/* Candidate info */
+.report-container p{
+  font-size:15px;
+  margin:6px 0;
+  color:#475569;
+}
+
+/* Score circle */
+.score-circle{
+  width:120px;
+  height:120px;
+  border-radius:50%;
+  background:linear-gradient(135deg,#2563eb,#3b82f6);
+  color:white;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-size:30px;
+  font-weight:bold;
+  margin:25px auto;
+  box-shadow:0 4px 10px rgba(0,0,0,0.15);
+}
+
+/* Chart section */
+canvas{
+  margin:20px auto;
+  display:block;
+}
+
+/* Table styling */
+table{
+  width:100%;
+  border-collapse:collapse;
+  margin-top:10px;
+  margin-bottom:25px;
+}
+
+th{
+  background:#2563eb;
+  color:white;
+  padding:10px;
+  font-weight:500;
+}
+
+td{
+  border:1px solid #e2e8f0;
+  padding:10px;
+  text-align:center;
+  color:#334155;
+}
+
+tr:nth-child(even){
+  background:#f8fafc;
+}
+
+/* Recommended courses */
+ul{
+  margin-top:10px;
+  padding-left:18px;
+}
+
+ul li{
+  margin:6px 0;
+  color:#334155;
+}
+
+/* Download button */
+.download-btn{
+  display:block;
+  margin:25px auto;
+  background:#2563eb;
+  color:white;
+  border:none;
+  padding:10px 22px;
+  border-radius:6px;
+  font-size:14px;
+  cursor:pointer;
+  transition:0.3s;
+}
+
+.download-btn:hover{
+  background:#1d4ed8;
+}

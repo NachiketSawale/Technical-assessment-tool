@@ -1,0 +1,112 @@
+<div *ngIf="quizQuestions.length > 0" class="quiz-wrapper">
+  <!-- HEADER -->
+  <app-header
+    [username]="username"
+    [showQuizStats]="true"
+    [currentQuestionNumber]="currentQuestionNumber"
+    [timeRemaining]="timeRemaining"
+    [totalQuestions]="totalQuestions"
+    [submittedCount]="submittedCount"
+    [skippedCount]="skippedCount"
+  >
+  </app-header>
+
+  <div class="quiz-container">
+    <!-- QUESTION SECTION -->
+    <div class="question-card">
+      <div class="question-header">
+        Question {{ currentQuestionNumber }} of {{ totalQuestions }}
+      </div>
+
+      <div class="question-text">
+        <p>{{ getInstruction(currentQuestion.questionText) }}</p>
+
+        <div class="code-card" *ngIf="getCode(currentQuestion.questionText)">
+          <pre><code>{{ getCode(currentQuestion.questionText) }}</code></pre>
+        </div>
+
+        <p *ngFor="let line of getRemainingLines(currentQuestion.questionText)">
+          {{ line }}
+        </p>
+      </div>
+      <div class="options-container" *ngIf="currentQuestion.options?.length">
+        <div *ngFor="let opt of currentQuestion.options" class="option-wrapper">
+          <ng-container *ngIf="currentQuestion.isMultipleAnswer; else singleChoice">
+            <!-- Custom Checkbox -->
+            <label class="custom-checkbox">
+              <input
+                type="checkbox"
+                [checked]="isOptionSelected(currentQuestionNumber, opt.id)"
+                (change)="handleAnswerSelect(opt.id, $event)"
+              />
+              <span class="checkmark"></span>
+              {{ opt.optionText }}
+            </label>
+          </ng-container>
+
+          <ng-template #singleChoice>
+            <!-- Custom Radio -->
+            <label class="custom-radio">
+              <input
+                type="radio"
+                name="question-{{ currentQuestionNumber }}"
+                [checked]="isOptionSelected(currentQuestionNumber, opt.id)"
+                (change)="handleAnswerSelect(opt.id, $event)"
+              />
+              <span class="radiomark"></span>
+              {{ opt.optionText }}
+            </label>
+          </ng-template>
+        </div>
+      </div>
+
+      <!-- ACTION BUTTONS -->
+      <div class="action-buttons">
+        <button
+          class="secondary-btn"
+          (click)="handleSkip()"
+          [disabled]="answers.has(currentQuestionNumber)"
+        >
+          Skip Question
+        </button>
+
+        <button class="primary-btn" (click)="handleSubmit()">
+          {{ currentQuestionIndex === totalQuestions - 1 ? 'Submit Quiz' : 'Submit & Next' }}
+        </button>
+      </div>
+    </div>
+
+    <!-- NAVIGATION PANEL -->
+    <div class="navigator-card">
+      <app-quiz-navigation
+        [totalQuestions]="totalQuestions"
+        [currentQuestion]="currentQuestionNumber"
+        [answeredQuestions]="answeredQuestions"
+        [skippedQuestions]="visitedUnanswered"
+        (questionSelect)="handleQuestionSelect($event)"
+        (previous)="handlePrevious()"
+        (next)="handleNext()"
+      >
+      </app-quiz-navigation>
+    </div>
+  </div>
+
+  <!-- SUBMIT CONFIRMATION MODAL -->
+  <div *ngIf="showSubmitDialog" class="modal-overlay">
+    <div class="modal-box">
+      <h3>Submit Quiz?</h3>
+
+      <p>
+        You answered {{ submittedCount }} out of {{ totalQuestions }}
+        <span *ngIf="skippedCount > 0"> and skipped {{ skippedCount }} </span>
+        questions.
+      </p>
+
+      <div class="modal-actions">
+        <button class="secondary-btn" (click)="showSubmitDialog = false">Review</button>
+
+        <button class="primary-btn" (click)="handleQuizSubmit()">Submit</button>
+      </div>
+    </div>
+  </div>
+</div>

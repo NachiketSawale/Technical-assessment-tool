@@ -1,0 +1,120 @@
+
+// Include theming for Angular Material with `mat.theme()`.
+// This Sass mixin will define CSS variables that are used for styling Angular Material
+// components according to the Material 3 design spec.
+// Learn more about theming and how to use it for your application's
+// custom components at https://material.angular.dev/guide/theming
+@use '@angular/material' as mat;
+
+html {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  @include mat.theme((
+    color: (
+      primary: mat.$azure-palette,
+      tertiary: mat.$blue-palette,
+    ),
+    typography: Roboto,
+    density: 0,
+  ));
+  scrollbar-width: none;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  border: none;
+background-image: url('/assets/images/backgroundimage.avif');
+  background-size: cover;        /* full screen */
+  background-position: center;   /* center image */
+  background-repeat: no-repeat;  /* no repeat */
+  background-attachment: fixed;  /* stay fixed while scrolling */
+
+  color: var(--text-color);
+  transition: 0.3s ease;
+}
+
+::-webkit-scrollbar {
+  width: 0px;
+  background: transparent;
+}
+.light-theme {
+  --bg-color: #f8fafc;
+  --card-bg: #ffffff;
+  --text-color: #1e293b;
+  --primary-color: #1e3a8a;
+  --border-color: #e2e8f0;
+}
+/* =========================
+   GLOBAL DARK THEME
+========================= */
+
+.dark-theme {
+  background-color: #969fb4;
+  color: #e2e8f0;
+}
+
+.dark-theme body {
+  background-color: #9fa4af;
+  color: #e2e8f0;
+  margin: 0;
+}
+
+/* Cards */
+.dark-theme .login-card,
+.dark-theme .highlight-card {
+  background: #858c96;
+  color: #6b7077;
+  box-shadow: 0 12px 30px rgba(0,0,0,0.4);
+}
+
+/* Inputs */
+.dark-theme input {
+  background: #020617;
+  border: 1px solid #334155;
+  color: #e2e8f0;
+}
+
+.dark-theme input::placeholder {
+  color: #94a3b8;
+}
+
+/* Tabs */
+.dark-theme .tabs {
+  background: #020617;
+}
+
+.dark-theme .tabs button {
+  color: #cbd5e1;
+}
+
+.dark-theme .tabs button.active {
+  background: #1e293b;
+  color: #6a737e;
+}
+
+/* Buttons */
+.dark-theme button[type="submit"] {
+  background: #474b53;
+}
+
+.dark-theme button[type="submit"]:hover {
+  background: #3d3f44;
+}
+
+
+@include mat.core();
+
+$dark-theme: mat.define-theme((
+  color: (
+    theme-type: dark,
+    primary: mat.$blue-palette,
+  ),
+));
+
+:root {
+  @include mat.all-component-themes($dark-theme);
+}
+/* You can add global styles to this file, and also import other style files */
+/* You can add global styles to this file, and also import other style files */

@@ -1,0 +1,48 @@
+<header class="header">
+   
+  <!-- LEFT: Logo + Title -->
+  <div class="logo">
+    <img src="assets/images/logo.png" class="logo-icon" alt="Logo" />
+    <p>Technical Assessment Platform</p>
+  </div>
+  
+ 
+  <!-- CENTER: Quiz Stats (only on quiz page) -->
+  @if (showQuizStats) {
+    <div class="status-container">
+      <div class="status-box green">
+        <div class="count">{{ submittedCount }}</div>
+        <div class="label">Submitted</div>
+      </div>
+      <div class="status-box amber">
+        <div class="count">{{ skippedCount }}</div>
+        <div class="label">Skipped</div>
+      </div>
+      <div class="status-box" [ngClass]="isLowTime ? 'red' : 'blue'">
+        <div class="count">{{ formatTime(timeRemaining) }}</div>
+        <div class="label">Remaining</div>
+      </div>
+    </div>
+  }
+<!-- RIGHT: Username (show before stats) -->
+  @if (username) {
+    <div class="user-info">
+      <div class="avatar">{{ username.charAt(0) | uppercase }}</div>
+      <span class="username">{{ username }}</span>
+    </div>
+  }
+</header>
+ 
+
+<!-- PROGRESS BAR — only on quiz page, below header -->
+@if (showQuizStats) {
+  <div class="progress-section">
+    <div class="progress-info">
+      <span>Question {{ submittedCount }} of {{ totalQuestions }}</span>
+      <span>{{ progress | number:'1.0-0' }}% Complete</span>
+    </div>
+    <div class="progress-bar">
+      <div class="progress-fill" [style.width.%]="progress"></div>
+    </div>
+  </div>
+}
